@@ -21,7 +21,7 @@ let db = new sqlNodeJs();
 ```
 Then use the parse function and pass in an SQL statement. For example:
 ```
-p.Parse("CREATE DATABASE databasename;");
+db.Parse("CREATE DATABASE databasename;");
 db.Parse("CREATE table tablename (test INT, test1 INT, test2 INT);");
 db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
 db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
