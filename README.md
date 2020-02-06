@@ -17,7 +17,7 @@ const sqlJS = require('sqlJS');
 ```
 Then write the following to create your database:
 ```
-let db = new sqlMock();
+let db = new sqlJS();
 ```
 Then use the parse function and pass in an SQL statement. For example:
 ```
