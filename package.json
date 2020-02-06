@@ -1,0 +1,27 @@
+{
+  "name": "sqlJS",
+  "version": "0.0.1",
+  "description": "Use an SQL database stored in memory with JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Megapixel99/sqlJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Megapixel99/sqlJS/issues"
+  },
+  "homepage": "https://github.com/Megapixel99/sqlJS",
+  "keywords": [
+    "oracle",
+    "oracledb",
+    "database",
+    "sql",
+    "mock"
+  ],
+  "author": "Seth Wheeler",
+  "license": "MIT"
+}
