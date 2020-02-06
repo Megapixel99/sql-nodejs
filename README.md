@@ -13,11 +13,11 @@ The purpose of this project is to create an SQL database which is stored in memo
 In your Project require the module:
 
 ```
-const sqlJS = require('sqlJS');
+const sqlNodeJs = require('sql-nodejs');
 ```
 Then write the following to create your database:
 ```
-let db = new sqlJS();
+let db = new sqlNodeJs();
 ```
 Then use the parse function and pass in an SQL statement. For example:
 ```
