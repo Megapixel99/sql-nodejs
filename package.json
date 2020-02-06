@@ -1,6 +1,6 @@
 {
-  "version": "0.0.1",
   "name": "sql-nodejs",
+  "version": "0.0.2",
   "description": "Use an SQL database stored in memory with JavaScript",
   "main": "index.js",
   "scripts": {
