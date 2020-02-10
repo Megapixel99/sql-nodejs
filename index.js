@@ -2,7 +2,8 @@ const Database = require('./database.js');
 const Table = require('./table.js');
 
 class SqlParser {
-  constructor() {
+  constructor(_logging = false) {
+    this.logging = _logging
     this.databases = []
     this.currentDatabase = null
     this.noDB = "No Database selected"
@@ -70,7 +71,9 @@ class SqlParser {
         let newDatabase = new Database(_sqlQuery[2]);
         this.databases.push(newDatabase);
         this.currentDatabase = newDatabase;
-        console.log("Using database: " + newDatabase.name);
+        if (this.logging) {
+          console.log("Using database: " + newDatabase.name);
+        }
       } else {
         console.log(_sqlQuery[1].toUpperCase() + " not supported.");
       }
@@ -104,7 +107,9 @@ class SqlParser {
       let index = this.databases.indexOf(db);
       if (index > -1) {
         this.currentDatabase = db;
-        console.log("Using database: " + db);
+        if (this.logging) {
+          console.log("Using database: " + db);
+        }
       } else {
         console.log("Database: " + db.toUpperCase() + " not found.");
       }
