@@ -3,25 +3,27 @@
 The purpose of this project is to create an SQL database which is stored in memory.
 
 ##### Supported Statements:
-###### v0.0.1
-  - Creating databases and tables
-  - Switching databases
-  - Select statements for querying tables
+  - Create
+  - Insert (Currently limited to only one record at a time)
+  - Select
+  - Drop
 
 ### How to use
 
 In your Project require the module:
 
 ```
-const sqlNodeJs = require('sql-nodejs');
+const sqlMock = require('sql-mock');
 ```
 Then write the following to create your database:
 ```
-let db = new sqlNodeJs();
+let db = new sqlMock();
 ```
+Logging is diabled by default, to enable logging pass `true` in as an argument to the constructor (i.e `sqlMock(true)`)
+
 Then use the parse function and pass in an SQL statement. For example:
-```
-db.Parse("CREATE DATABASE databasename;");
+```javascript
+p.Parse("CREATE DATABASE databasename;");
 db.Parse("CREATE table tablename (test INT, test1 INT, test2 INT);");
 db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
 db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
@@ -41,6 +43,16 @@ project directory:
 $ npm test
 ```
 
+### Version History
+###### v0.0.5
+  - Added option to disable info logs
+    - i.e "Using database: databasename"
+
+###### v0.0.1
+  - Creating databases and tables
+  - Switching databases
+  - Select statements for querying tables
+
 ### How to contribute
 
-Contributions are appreciated, if you wish to contribute please make a pull request.
+Contributions are appreciated, if you wish to contribute please make a pull request on the Github Repository.
