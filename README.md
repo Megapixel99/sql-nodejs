@@ -12,11 +12,11 @@ The purpose of this project is to create an SQL database which is stored in memo
 
 In your Project require the module:
 
-```
+```javascript
 const sqlMock = require('sql-mock');
 ```
 Then write the following to create your database:
-```
+```javascript
 let db = new sqlMock();
 ```
 Logging is diabled by default, to enable logging pass `true` in as an argument to the constructor (i.e `sqlMock(true)`)
