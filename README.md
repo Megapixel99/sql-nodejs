@@ -23,7 +23,7 @@ Logging is diabled by default, to enable logging pass `true` in as an argument t
 
 Then use the parse function and pass in an SQL statement. For example:
 ```javascript
-p.Parse("CREATE DATABASE databasename;");
+db.Parse("CREATE DATABASE databasename;");
 db.Parse("CREATE table tablename (test INT, test1 INT, test2 INT);");
 db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
 db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
