@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Megapixel99/sqlJS.git"
+    "url": "git+https://github.com/Megapixel99/sql-nodejs.git"
   },
   "bugs": {
-    "url": "https://github.com/Megapixel99/sqlJS/issues"
+    "url": "https://github.com/Megapixel99/sql-nodejs/issues"
   },
-  "homepage": "https://github.com/Megapixel99/sqlJS",
+  "homepage": "https://github.com/Megapixel99/sql-nodejs",
   "keywords": [
     "oracle",
     "oracledb",

@@ -1,6 +1,6 @@
 # sql-nodejs
 
-[![Tests](https://github.com/Megapixel99/sqlJS/actions/workflows/test.yml/badge.svg)](https://github.com/Megapixel99/sqlJS/actions/workflows/test.yml)
+[![Tests](https://github.com/Megapixel99/sql-nodejs/actions/workflows/test.yml/badge.svg)](https://github.com/Megapixel99/sql-nodejs/actions/workflows/test.yml)
 [![npm version](https://img.shields.io/npm/v/sql-nodejs.svg)](https://www.npmjs.com/package/sql-nodejs)
 [![npm downloads](https://img.shields.io/npm/dm/sql-nodejs.svg)](https://www.npmjs.com/package/sql-nodejs)
 [![license](https://img.shields.io/npm/l/sql-nodejs.svg)](LICENSE)
@@ -28,7 +28,7 @@ npm install sql-nodejs@0.0.6
 To work on the project itself:
 
 ```bash
-git clone https://github.com/Megapixel99/sqlJS.git
+git clone https://github.com/Megapixel99/sql-nodejs.git
 ```
 
 ## Usage
