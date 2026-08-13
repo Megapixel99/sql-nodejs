@@ -1,20 +1,26 @@
 {
   "name": "sql-nodejs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Use an SQL database stored in memory with JavaScript",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "database.js",
+    "table.js",
+    "row.js"
+  ],
   "scripts": {
     "test": "node --test",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Megapixel99/sqlJS.git"
+    "url": "git+https://github.com/Megapixel99/sql-nodejs.git"
   },
   "bugs": {
-    "url": "https://github.com/Megapixel99/sqlJS/issues"
+    "url": "https://github.com/Megapixel99/sql-nodejs/issues"
   },
-  "homepage": "https://github.com/Megapixel99/sqlJS",
+  "homepage": "https://github.com/Megapixel99/sql-nodejs",
   "keywords": [
     "oracle",
     "oracledb",
