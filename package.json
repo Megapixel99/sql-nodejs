@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Megapixel99/sqlJS.git"
+    "url": "git+https://github.com/Megapixel99/sqlJS.git"
   },
   "bugs": {
     "url": "https://github.com/Megapixel99/sqlJS/issues"
