@@ -15,7 +15,7 @@ class Table {
       for (var i = 0; i < queryColumns.length; i++) {
         for (var l = 0; l < this.getColmunNames().length; l++) {
           if (queryColumns[i] === this.getColmunNames()[l]) {
-            arr[i] = this.rows[j].data[i]
+            arr[i] = this.rows[j].data[l]
           }
         }
       }
@@ -37,7 +37,7 @@ class Table {
         for (var l = 0; l < this.getColmunNames().length; l++) {
           if (_where[k].split("=")[1] === this.rows[j].data[this.getColmunNames().indexOf(_where[k].split("=")[0])]) {
           if (queryColumns[i] === this.getColmunNames()[l]) {
-            arr[i] = this.rows[j].data[i]
+            arr[i] = this.rows[j].data[l]
           }
         }
         }
@@ -82,10 +82,10 @@ class Table {
   }
   getDataForColumn(_column) {
     let data = [];
-    let index = this.columns.indexOf(_column);
-    if (index === -1) {
+    let index = this.getColmunNames().indexOf(_column);
+    if (index !== -1) {
       for (var i = 0; i < this.rows.length; i++) {
-        data.push(this.rows[i][index]);
+        data.push(this.rows[i].data[index]);
       }
     } else {
       throw (new Error("COLUMN(S) not found"));

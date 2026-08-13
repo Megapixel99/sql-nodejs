@@ -1,58 +1,90 @@
-### Overview
+# sql-nodejs
 
-The purpose of this project is to create an SQL database which is stored in memory.
+An **in-memory SQL database written from scratch in JavaScript** — a hand-written
+SQL parser and storage engine with **zero dependencies**. You give it SQL strings;
+it creates databases and tables, stores rows, and answers `SELECT` queries.
 
-##### Supported Statements:
-  - Create
-  - Insert (Currently limited to only one record at a time)
-  - Select
-  - Drop
+> A learning project: the goal was to understand how a SQL engine parses and
+> executes statements by building one, not to be a production database. See
+> [Limitations](#limitations).
 
-### How to use
+## Install
 
-In your Project require the module:
+```bash
+npm install sql-nodejs
+```
+
+## Usage
 
 ```javascript
-const sqlMock = require('sql-mock');
-```
-Then write the following to create your database:
-```javascript
-let db = new sqlMock();
-```
-Logging is diabled by default, to enable logging pass `true` in as an argument to the constructor (i.e `sqlMock(true)`)
+const SqlParser = require('sql-nodejs');
 
-Then use the parse function and pass in an SQL statement. For example:
-```javascript
-db.Parse("CREATE DATABASE databasename;");
-db.Parse("CREATE table tablename (test INT, test1 INT, test2 INT);");
-db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
-db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 0 + ", " + 2 + ", " + 0 + ");")
-db.Parse("INSERT INTO tablename (test, test1, test2) VALUES (" + 1 + ", " + 0 + ", " + 0 + ");")
-db.Parse("Select test, test1, test2 from tablename WHERE test = " + 0 + ";");
-db.Parse("Select test, test1 from tablename;");
-db.Parse("Select * from tablename WHERE test = " + 1 + ";");
-db.Parse("Select * from tablename;");
-```
+const db = new SqlParser();
+// Logging is off by default; pass `true` to log database switches:
+//   const db = new SqlParser(true);
 
-### How to test
+db.Parse('CREATE DATABASE mydb;');
+db.Parse('CREATE TABLE users (id INT, name VARCHAR, age INT);');
+db.Parse('INSERT INTO users (id, name, age) VALUES (1, alice, 30);');
+db.Parse('INSERT INTO users (id, name, age) VALUES (2, bob, 25);');
 
-In your Terminal or Command Prompt, run the following at the root of the
-project directory:
+db.Parse('SELECT * FROM users;');
+// → [ ['1', 'alice', '30'], ['2', 'bob', '25'] ]
 
-```
-$ npm test
+db.Parse('SELECT name, age FROM users;');
+// → [ ['alice', '30'], ['bob', '25'] ]
+
+db.Parse('SELECT * FROM users WHERE age=25;');
+// → [ ['2', 'bob', '25'] ]
 ```
 
-### Version History
-###### v0.0.5
-  - Added option to disable info logs
-    - i.e "Using database: databasename"
+`SELECT` returns an **array of rows**, where each row is an array of the requested
+column values in the order you asked for them.
 
-###### v0.0.1
-  - Creating databases and tables
-  - Switching databases
-  - Select statements for querying tables
+## Supported statements
 
-### How to contribute
+| Statement | Notes |
+|---|---|
+| `CREATE DATABASE <name>` | also becomes the active database |
+| `USE <name>` | switch the active database |
+| `CREATE TABLE <name> (<col> <type>, …)` | |
+| `INSERT INTO <table> (<cols>) VALUES (<values>)` | one row per statement |
+| `SELECT <cols|*> FROM <table> [WHERE <col>=<value>]` | |
+| `DROP TABLE <name>` / `DROP DATABASE <name>` | |
 
-Contributions are appreciated, if you wish to contribute please make a pull request on the Github Repository.
+## How it works
+
+- **`index.js`** — `SqlParser`: tokenizes each statement and dispatches to the
+  right handler (`Select` / `Create` / `Insert` / `Drop` / `Use`).
+- **`database.js`** — `Database`: holds tables, looked up by name.
+- **`table.js`** — `Table`: column definitions + rows; implements projection and
+  `WHERE` filtering.
+- **`row.js`** — `Row`: a single record.
+
+## Tests
+
+```bash
+npm test
+```
+
+Runs the assertion suite in `test/` (Node's built-in test runner — no
+dependencies). It covers projection order and subsets, `WHERE` filtering,
+name-based table/database resolution, `DROP`, and the error paths
+(no database selected, missing table, unsupported statement).
+
+## Limitations
+
+This is a deliberately small learning project:
+
+- **Values are stored as strings** — declared column types (`INT`, etc.) are
+  recorded but not enforced or coerced.
+- **`WHERE` supports a single `column=value` equality** — no `AND`/`OR`, ranges,
+  or operators beyond `=`.
+- **One row per `INSERT`**.
+- **No `JOIN`, `UPDATE`, `DELETE`, `ORDER BY`, `GROUP BY`, or aggregates.**
+- Statements are lowercased during parsing, so identifiers and values are
+  case-insensitive.
+
+## License
+
+MIT © Seth Wheeler

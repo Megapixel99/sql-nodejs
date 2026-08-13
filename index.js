@@ -97,16 +97,16 @@ class SqlParser {
           throw(new Error(this.noDB));
         }
       } else if (_sqlQuery[1] === "database") {
-        dropDatabase(_sqlQuery[2]);
+        this.dropDatabase(_sqlQuery[2]);
         this.currentDatabase = null;
       } else {
         console.log(_sqlQuery[1].toUpperCase() + " not supported.");
       }
     }
     Use(db) {
-      let index = this.databases.indexOf(db);
-      if (index > -1) {
-        this.currentDatabase = db;
+      let found = this.databases.find((d) => d.name === db);
+      if (found) {
+        this.currentDatabase = found;
         if (this.logging) {
           console.log("Using database: " + db);
         }
@@ -118,7 +118,7 @@ class SqlParser {
       return this.currentDatabase;
     }
     dropDatabase(db) {
-      let index = this.databases.indexOf(db);
+      let index = this.databases.findIndex((d) => d.name === db);
       if (index > -1) {
         this.databases.splice(index, 1);
       } else {

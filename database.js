@@ -7,9 +7,7 @@ class Database {
     return this.tables;
   }
   getTable(_table){
-    return (this.tables.find(function () {
-      return _table;
-    }));
+    return (this.tables.find((table) => table.name === _table));
   }
   createTable(_tableName){
     this.tables.push(_tableName);
@@ -18,12 +16,12 @@ class Database {
     return this.name;
   }
   dropTable(table){
-    let index = this.tables.indexOf(_table);
+    let index = this.tables.findIndex((t) => t.name === table);
     if (index > -1) {
-    this.tables.splice(index, 1);
-  } else {
-    console.log("Table: " + table.toUpperCase() + " not found.");
-  }
+      this.tables.splice(index, 1);
+    } else {
+      console.log("Table: " + table.toUpperCase() + " not found.");
+    }
   }
 }
 
